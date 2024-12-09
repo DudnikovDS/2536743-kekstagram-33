@@ -18,9 +18,8 @@ const pristine = new Pristine (imgUploadForm, pristineConfig, false);
 const checkTextDescription = (value) => {
   if (value !== '') {
     return value.length <= TEXT_DESCRIPTION_MAX_LENGTH;
-  } else {
-    return true;
   }
+  return true;
 };
 
 pristine.addValidator(textDescription, checkTextDescription, 'Комментарий не должен превышать 140 символов');
@@ -37,9 +36,8 @@ const checkTextHashtagsFormat = (value) => {
       }
     }
     return true;
-  } else {
-    return true;
   }
+  return true;
 };
 
 
