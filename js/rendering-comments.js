@@ -14,9 +14,9 @@ const renderComments = (id, photoSet, countShown, countTotal, step) => {
     const socialPicture = commentItem.querySelector('.social__picture');
     const socialText = commentItem.querySelector('.social__text');
 
-    socialPicture.src = photoSet[id - 1].comments[i].avatar;
-    socialPicture.alt = photoSet[id - 1].comments[i].name;
-    socialText.textContent = photoSet[id - 1].comments[i].message;
+    socialPicture.src = photoSet[id].comments[i].avatar;
+    socialPicture.alt = photoSet[id].comments[i].name;
+    socialText.textContent = photoSet[id].comments[i].message;
 
     fragmentDownloadComments.append(commentItem);
   }

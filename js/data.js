@@ -1,4 +1,5 @@
-import {getRandomInteger} from './util.js';
+import {getRandomInteger, showErrorMessage} from './util.js';
+import {getData} from './api.js';
 
 // данные для создания набора фотографий
 
@@ -92,6 +93,21 @@ const getPhotos = () => {
 };
 
 
-const photoSet = getPhotos();
+// let photoSet = getPhotos();
+
+let photoSet = [];
+
+const bootstrap = async () => {
+  try {
+    return await getData();
+  } catch(err) {
+    showErrorMessage();
+  }
+};
+
+photoSet = await bootstrap();
+
+console.log(photoSet);
 
 export {photoSet};
+
