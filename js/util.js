@@ -1,3 +1,5 @@
+const body = document.querySelector('body');
+
 //функция получения случайного целого числа
 
 const getRandomInteger = (a, b) => {
@@ -25,4 +27,18 @@ const closeModalWindow = (modalWindow,...rest) => {
   document.removeEventListener('keydown', rest[1]);
 };
 
-export {getRandomInteger, createIdGenerator, closeModalWindow};
+
+// функция показа ошибки загрузки данных
+const REMOVE_MESSAGE_TIMEOUT = 5000;
+const templateErrorMsgLoadData = document.querySelector('#data-error').content.querySelector('.data-error');
+
+const showErrorMessage = () => {
+  const errorArea = templateErrorMsgLoadData.cloneNode(true);
+  body.append(errorArea);
+
+  setTimeout(() => {
+    errorArea.remove();
+  }, REMOVE_MESSAGE_TIMEOUT);
+};
+
+export {getRandomInteger, createIdGenerator, closeModalWindow, showErrorMessage, body};

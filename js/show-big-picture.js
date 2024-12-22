@@ -1,9 +1,8 @@
 import {photoList} from './rendering-thumbnails.js';
 import {photoSet} from './data.js';
 import {socialComments, renderComments} from './rendering-comments';
-import {closeModalWindow} from './util.js';
+import {closeModalWindow, body} from './util.js';
 
-const body = document.querySelector('body');
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const socialCaption = bigPicture.querySelector('.social__caption');
@@ -44,12 +43,12 @@ const onPhotoListShowBigPicture = (evt) => {
     bigPicture.classList.remove('hidden');
     body.classList.add('modal-open');
 
-    bigPictureImg.src = photoSet[id - 1].url;
-    bigPictureImg.alt = photoSet[id - 1].description;
-    socialCaption.textContent = photoSet[id - 1].description;
-    likesCount.textContent = photoSet[id - 1].likes;
+    bigPictureImg.src = photoSet[id].url;
+    bigPictureImg.alt = photoSet[id].description;
+    socialCaption.textContent = photoSet[id].description;
+    likesCount.textContent = photoSet[id].likes;
 
-    const socialCommentTotal = photoSet[id - 1].comments.length;
+    const socialCommentTotal = photoSet[id].comments.length;
     socialCommentTotalCount.textContent = socialCommentTotal;
 
     if (socialCommentTotal <= SOCIAL_COMMENT_SHOWN_COUNT) {
