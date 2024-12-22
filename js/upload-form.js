@@ -24,7 +24,6 @@ const onimgUploadInputChange = () => {
   imgUploadOverlay.classList.remove('hidden');
   document.addEventListener('keydown', onDocumentCloseByEscape);
   effectLevelSlider.classList.add('hidden');
-
 };
 
 imgUploadInput.addEventListener('change', onimgUploadInputChange);
@@ -66,5 +65,19 @@ function onDocumentCloseByEscape(evt) {
   }
 }
 
-export {imgUploadForm, imgUploadPreview, imgUploadPreviewImg, scaleControlValue, scaleControlSmaller, scaleControlBigger, textHashtags, textDescription, effectLevelValue, effectLevelSlider, effectsRadio
+export {
+  imgUploadForm,
+  imgUploadPreview,
+  imgUploadPreviewImg,
+  imgUploadOverlay,
+  imgUploadFormReset,
+  scaleControlValue,
+  scaleControlSmaller,
+  scaleControlBigger,
+  textHashtags,
+  textDescription,
+  effectLevelValue,
+  effectLevelSlider,
+  effectsRadio,
+  onDocumentCloseByEscape
 };
