@@ -1,4 +1,16 @@
-import {imgUploadForm, textDescription, textHashtags} from './upload-form.js';
+import {
+  imgUploadForm,
+  textDescription,
+  textHashtags,
+  imgUploadOverlay,
+  onDocumentCloseByEscape,
+  imgUploadFormReset
+} from './upload-form.js';
+import {sendData} from './api.js';
+import {closeModalWindow} from './util.js';
+import {body} from './show-big-picture.js';
+import {desableButton, enableButton} from './submit-button.js';
+import {showSuccessMessage, showErrorMessage} from './send-success-error.js';
 
 // константы для валидации
 const TEXT_DESCRIPTION_MAX_LENGTH = 140;
@@ -65,12 +77,22 @@ const checkTextHashtagsSimilar = (value) => {
 pristine.addValidator(textHashtags, checkTextHashtagsSimilar,
   'Не допускаются одинаковые хэштеги');
 
-//добавляем валидацию при попытке отправить форму
-const onImgUploadFormSubmit = (evt) => {
+//отправка формы
+const onImgUploadFormSubmit = async (evt) => {
   evt.preventDefault();
   const isValid = pristine.validate();
   if (isValid) {
-    imgUploadForm.submit();
+    desableButton();
+    try{
+      await sendData(new FormData(imgUploadForm));
+      showSuccessMessage();
+      closeModalWindow(imgUploadOverlay, body, onDocumentCloseByEscape);
+      imgUploadFormReset();
+    } catch {
+      showErrorMessage();
+    } finally {
+      enableButton();
+    }
   }
 };
 
