@@ -1,12 +1,13 @@
 import {photoSet} from './data.js';
 import {photoList, renderThumbnails} from './rendering-thumbnails.js';
-import {getRandomInteger} from './util.js';
+import {getRandomInteger, debounce} from './util.js';
 
 const imgFilters = document.querySelector('.img-filters');
 const filterDefault = document.querySelector('#filter-default');
 const filterRandom = document.querySelector('#filter-random');
 const filterDiscussed = document.querySelector('#filter-discussed');
 const QUANTITY_RANDOM = 10;
+const FILTER_DELAY = 500;
 
 // активация меню фильтров
 if (photoSet) {
@@ -58,7 +59,7 @@ const onFilterDefaultClick = () => {
   renderThumbnails(photoSet);
 };
 
-filterDefault.addEventListener('click', onFilterDefaultClick);
+filterDefault.addEventListener('click', debounce(onFilterDefaultClick, FILTER_DELAY));
 
 // обработчик нажатия на кнопку случайные 10 штук
 
@@ -71,7 +72,7 @@ const onFilterRandomClick = () => {
   renderThumbnails(getRandomArray(photoSet, QUANTITY_RANDOM));
 };
 
-filterRandom.addEventListener('click', onFilterRandomClick);
+filterRandom.addEventListener('click', debounce(onFilterRandomClick, FILTER_DELAY));
 
 // обработчик нажатия на кнопку обсуждаемые
 
@@ -85,6 +86,5 @@ const onFilterDiscussedClick = () => {
   renderThumbnails(photoSetSorted);
 };
 
-filterDiscussed.addEventListener('click', onFilterDiscussedClick);
+filterDiscussed.addEventListener('click', debounce(onFilterDiscussedClick, FILTER_DELAY));
 
-export {imgFilters};
