@@ -41,4 +41,10 @@ const showErrorMessage = () => {
   }, REMOVE_MESSAGE_TIMEOUT);
 };
 
-export {getRandomInteger, createIdGenerator, closeModalWindow, showErrorMessage, body};
+export {
+  body,
+  closeModalWindow,
+  createIdGenerator,
+  getRandomInteger,
+  showErrorMessage
+};

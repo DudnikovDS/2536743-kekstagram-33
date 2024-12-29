@@ -1,7 +1,5 @@
 import {showErrorMessage} from './util.js';
 import {getData} from './api.js';
-import {imgFilters} from './filters.js';
-
 
 let photoSet = [];
 
@@ -14,10 +12,6 @@ const bootstrap = async () => {
 };
 
 photoSet = await bootstrap();
-
-if (photoSet) {
-  imgFilters.classList.remove('img-filters--inactive');
-}
 
 export {photoSet};
 
