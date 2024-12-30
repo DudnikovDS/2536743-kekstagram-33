@@ -35,7 +35,6 @@ const onScaleControlBiggerClick = () => {
     scaleControlValueNumber += SCALE_STEP;
     scaleControlValue.value = `${scaleControlValueNumber}%`;
     imgUploadPreviewImg.style.transform = `scale(${scaleControlValueNumber / 100})`;
-
   }
 };
 

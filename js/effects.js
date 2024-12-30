@@ -1,4 +1,12 @@
-import {imgUploadForm, effectLevelValue, effectLevelSlider, effectsRadio, imgUploadPreviewImg} from './upload-form.js';
+import {
+  imgUploadForm,
+  effectLevelValue,
+  effectLevelSlider,
+  imgUploadEffectLevel,
+  effectsRadio,
+  imgUploadPreviewImg
+} from './upload-form.js';
+
 import {effectsConfig} from './effects-config.js';
 
 noUiSlider.create(effectLevelSlider, effectsConfig.effectNone);
@@ -31,7 +39,7 @@ effectLevelSlider.noUiSlider.on('update', onEffectLevelSliderUpdate);
 //функция по изменению параметров слайдера
 
 const sliderConfigChange = (objectConfig, effect, unit = '') => {
-  effectLevelSlider.classList.remove('hidden');
+  imgUploadEffectLevel.style.display = 'block';
   effectLevelSlider.noUiSlider.updateOptions(objectConfig);
   effectLevelValue.value = effectLevelSlider.noUiSlider.get();
   imgUploadPreviewImg.style.filter = `${effect}(${effectLevelSlider.noUiSlider.get()}${unit})`;
@@ -46,7 +54,7 @@ const onEffectsRadioChange = (evt) => {
       effectLevelSlider.noUiSlider.updateOptions(effectsConfig.effectNone);
       effectLevelValue.value = 0;
       imgUploadPreviewImg.style.filter = 'none';
-      effectLevelSlider.classList.add('hidden');
+      imgUploadEffectLevel.style.display = 'none';
       break;
     case 'effect-chrome' :
       sliderConfigChange(effectsConfig.effectChrome, 'grayscale');

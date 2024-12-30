@@ -6,12 +6,14 @@ const imgUploadOverlay = imgUploadForm.querySelector('.img-upload__overlay');
 const imgUploadCloseButton = imgUploadForm.querySelector('.img-upload__cancel');
 const imgUploadPreview = imgUploadForm.querySelector('.img-upload__preview');
 const imgUploadPreviewImg = imgUploadForm.querySelector('.img-upload__preview img');
+const effectsPreview = document.querySelectorAll('.effects__preview');
 
 // поля формы и элементы управления
 const imgUploadInput = imgUploadForm.querySelector('.img-upload__input');
 const scaleControlValue = imgUploadForm.querySelector('.scale__control--value');
 const scaleControlSmaller = imgUploadForm.querySelector('.scale__control--smaller');
 const scaleControlBigger = imgUploadForm.querySelector('.scale__control--bigger');
+const imgUploadEffectLevel = document.querySelector('.img-upload__effect-level');
 const effectLevelValue = imgUploadForm.querySelector('.effect-level__value');
 const effectLevelSlider = imgUploadForm.querySelector('.effect-level__slider');
 const effectsRadio = imgUploadForm.querySelectorAll('.effects__radio');
@@ -26,6 +28,9 @@ const previewPhoto = () => {
   const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
   if (matches) {
     imgUploadPreviewImg.src = URL.createObjectURL(file);
+    for (let i = 0; i < effectsPreview.length; i++) {
+      effectsPreview[i].style.backgroundImage = `url(${URL.createObjectURL(file)})`;
+    }
   }
 };
 
@@ -35,7 +40,7 @@ const onimgUploadInputChange = () => {
   previewPhoto();
   imgUploadOverlay.classList.remove('hidden');
   document.addEventListener('keydown', onDocumentCloseByEscape);
-  effectLevelSlider.classList.add('hidden');
+  imgUploadEffectLevel.style.display = 'none';
 };
 
 imgUploadInput.addEventListener('change', onimgUploadInputChange);
@@ -79,6 +84,7 @@ function onDocumentCloseByEscape(evt) {
 
 export {
   imgUploadForm,
+  imgUploadEffectLevel,
   imgUploadPreview,
   imgUploadPreviewImg,
   imgUploadOverlay,
