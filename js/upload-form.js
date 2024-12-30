@@ -17,10 +17,22 @@ const effectLevelSlider = imgUploadForm.querySelector('.effect-level__slider');
 const effectsRadio = imgUploadForm.querySelectorAll('.effects__radio');
 const textHashtags = imgUploadForm.querySelector('.text__hashtags');
 const textDescription = imgUploadForm.querySelector('.text__description');
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+
+// функция подстановки фотографии в preview
+const previewPhoto = () => {
+  const file = imgUploadInput.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+  if (matches) {
+    imgUploadPreviewImg.src = URL.createObjectURL(file);
+  }
+};
 
 // функция открытия окна редактирования фотографии
 const onimgUploadInputChange = () => {
   body.classList.add('modal-open');
+  previewPhoto();
   imgUploadOverlay.classList.remove('hidden');
   document.addEventListener('keydown', onDocumentCloseByEscape);
   effectLevelSlider.classList.add('hidden');
