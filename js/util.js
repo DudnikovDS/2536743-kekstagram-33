@@ -1,5 +1,7 @@
 const body = document.querySelector('body');
 
+const body = document.querySelector('body');
+
 //функция получения случайного целого числа
 
 const getRandomInteger = (a, b) => {
