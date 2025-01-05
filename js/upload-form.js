@@ -62,6 +62,13 @@ const imgUploadFormReset = () => {
   effectsRadio[0].checked = true;
   textHashtags.value = '';
   textDescription.value = '';
+
+  const imgUploadFieldWrapperError = imgUploadForm.querySelectorAll('.img-upload__field-wrapper--error');
+  if(imgUploadFieldWrapperError){
+    for (const item of imgUploadFieldWrapperError) {
+      item.remove();
+    }
+  }
 };
 
 // функция закрытия окна редактирования по кнопке закрыть
