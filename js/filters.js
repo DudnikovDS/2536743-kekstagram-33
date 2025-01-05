@@ -45,7 +45,7 @@ const clearPhotoList = () => {
 };
 
 //функция сортировки фотографий по количеству лайков
-const sortPhotoList = (photoItemA, photoItemB) => photoItemB.likes - photoItemA.likes;
+const sortPhotoList = (photoItemA, photoItemB) => photoItemB.comments.length - photoItemA.comments.length;
 
 // обработчик нажатия на кнопку по умолчанию
 
